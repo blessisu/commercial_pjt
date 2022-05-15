@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block style %}
+.content-box {
+    position: absolute;
+    top:20%;
+    width: 400px;
+    left: 50%;
+    width: 70%;
+    border-color: #8f7436;
+    border-style: ridge;
+    border-radius: 10px;
+    margin: 0 0 0 -400px;
+    padding: 4px 4px 4px 4px;
+}
+.content-select {
+    float: right;
+}
+{% endblock %}
+
+{% block content %}
+<div class="content-box">
+    <div class="content-select mb-3">
+        <a href="{% url 'board:edit' board.id %}" class="btn btn-outline-warning">수정</a>
+        <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">삭제</a>
+    </div>
+    <div id="deleteModal" class="modal" tabindex="-1" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                <p>정말로 글을 삭제하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+                <form action="{% url 'board:remove' board.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger">삭제</button>
+                  </form>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 p-3">
+        <span>
+            <p>{{ board.user }}</p>
+            <p>{{ board.title }}</p>
+            <p>{{ board.content }}</p>
+        </span>
+    </div>
+</div>
+
+{% endblock %}
