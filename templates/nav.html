@@ -1,0 +1,54 @@
+{% load static %}
+
+
+<style>
+.navbar-khaki {
+    background-color: #5f4814!important;
+}
+.navbar-khaki, .navbar-khaki .nav>li>a:hover, .navbar-khaki .nav>li>a:focus {
+    background-color: #5f4814;
+}
+.nav a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.nav a:hover {
+    color: #8f7436;
+}
+</style>
+
+
+<nav class="sticky-top navbar navbar-expand-md navbar-khaki bg-khaki">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'main:main' %}">
+        <img class="logo" src="{% static 'images/logo.png' %}" alt="logo" height="60">
+      </a>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'rents:' %}">상가매매</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">자유게시판</a>
+        </li>
+      </ul>
+      {% if request.user.is_authenticated %}
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:logout' %}">로그아웃</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">마이 페이지</a>
+        </li>
+      </ul>
+      {% else %}
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link my-login" href="{% url 'users:login' %}">로그인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link my-signup" href="{% url 'users:signup' %}">회원가입</a>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+</nav>
