@@ -61,7 +61,7 @@ def rent_edit(request, rent_id):
 
 @login_required
 @require_http_methods(['POST'])
-def rent_delete(request, rent_id):
+def rent_remove(request, rent_id):
     rent = get_object_or_404(Rent, pk=rent_id)
     if request.user == rent.user:
         rent.delete()

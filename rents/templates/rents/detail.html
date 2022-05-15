@@ -33,7 +33,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-                <form action="{% url 'rents:delete' rent.id %}" method="POST">
+                <form action="{% url 'rents:remove' rent.id %}" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-outline-danger">삭제</button>
                   </form>
